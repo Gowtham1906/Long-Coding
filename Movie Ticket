@@ -1,129 +1,124 @@
-class User_details:
-    print("Welcome to Movies World! Have a Good Day!")
-    def __init__ (self,user_id, password,name,gender,mail):
-        self.user_id=user_id
+users=[]
+movielist=[["Movie Name: Bigil;","Language: Tamil;", "Genere: Sports;", "Rating: 8.8/10"],
+           ["Movie Name: Porthozhil;","Language: Tamil,English;", "Genere: Thriller;", "Rating: 9.0/10"]]
+
+
+def printer(movielist,n):
+    count=0
+    for movies in movielist:
+        if(count<n):
+          for details in movies:
+              print(details)
+          count+=1    
+          print("\n-------------------------")   
+    
+class bookmyshow:
+    def __init__(self,id:int,name:str,email:str,password:str,phno:int):
+        self.userid=id
+        self.username=name
+        self.email=email
         self.password=password
-        self.name=name
-        self.gender=gender
-        self.mail=mail
-    def display_details(self):
-        print("Name:",self.name,"\nGender:",self.gender,"\nMail ID:",self.mail,"\n-------------------")
-    def logging_in(self,user_id_entered,password_entered):
-        if self.user_id==user_id_entered and self.password==password_entered:
-            print("Login Sucessful !\n-------------------")
-            user1.display_details()
-            t1.display_theatres()
-            t2.display_theatres()
-            t3.display_theatres()
-            mv_list=int(input("Enter Theatre ID to see movie list:"))  
-            if mv_list==2000:
-                print("Movie listings at VIDHYA THEATRE:","\n------------------")
-                for movie_details in vidhya_movies:
-                    movie = Movie_listings(*movie_details)
-                    movie.display_movie()
-                movie_select=input("Enter the movie ID to confirm:")
-                if movie_select=="1d":
-                    seat_count=int(input("Enter no.of seats:"))
-                    amt=seat_count*200
-                    print("Total ticket cost is:",amt)
-                elif movie_select=="2d":
-                    seat_count=int(input("Enter no.of seats:"))
-                    amt=seat_count*150
-                    print("Total ticket cost is:",amt)
-                elif movie_select=="3d":
-                    seat_count=int(input("Enter no.of seats:"))
-                    amt=seat_count*150
-                    print("Total ticket cost is:",amt)
-                
-            elif mv_list==2001:
-                print("Movie listings at VIJAY THEATRE:","\n------------------")
-                for movie_details in vijay_movies:
-                    movie = Movie_listings(*movie_details)
-                    movie.display_movie()
-                movie_select=input("Enter the movie ID to confirm:")
-                if movie_select=="1d":
-                    seat_count=int(input("Enter no.of seats:"))
-                    amt=seat_count*150
-                    print("Total ticket cost is:",amt)
-                elif movie_select=="2d":
-                    seat_count=int(input("Enter no.of seats:"))
-                    amt=seat_count*200
-                    print("Total ticket cost is:",amt)
-                elif movie_select=="3d":
-                    seat_count=int(input("Enter no.of seats:"))
-                    amt=seat_count*200
-                    print("Total ticket cost is:",amt)
+        self.phno=phno
+        
 
-            elif mv_list==2002:
-                print("Movie listings at VIDHYA THEATRE:","\n------------------")
-                for movie_details in rohini_movies:
-                    movie = Movie_listings(*movie_details)
-                    movie.display_movie()
-                movie_select=input("Enter the movie ID to confirm:")
-                if movie_select=="1d":
-                    seat_count=int(input("Enter no.of seats:"))
-                    amt=seat_count*100
-                    print("Total ticket cost is:",amt)
-                elif movie_select=="2d":
-                    seat_count=int(input("Enter no.of seats:"))
-                    amt=seat_count*150
-                    print("Total ticket cost is:",amt)
-                elif movie_select=="3d":
-                    seat_count=int(input("Enter no.of seats:"))
-                    amt=seat_count*200
-                    print("Total ticket cost is:",amt)
 
-            else:
-                print('none')
+    def register(self):
+        userid = int(input("Enter your userid:"))
+        name = str(input("Enter your name:"))
+        email = str(input("Enter your emailid:"))
+        password = str(input("Enter your password:"))
+        phno = int(input("Enter your mobile number:"))
+        app=bookmyshow(userid,name,email,password,phno)
+        app.hardcodedata()
+
+    def hardcodedata(self):
+        users.append(self)
+        #print(users)
+        return users
+    
+    def validlogin(self,email,password):
+        for user in users:
+            if user.email==email and user.password==password:
+                return user
             
-            conf=input("Enter 'yes' to confirm:")
-            if conf=='yes':
-                print("\n***************\nSuccessfully Booked\nThank you for using the app\n***************")
-            else:
-                print("Cancelled Booking")
+
+class Movielist:
+    def _init_(self,movieid,moviename,movielang,movietime,releasedate):
+        self.movieid=movieid
+        self.moviename=moviename
+        self.language=movielang
+        self.movietime=movietime
+        self.releasedate=releasedate
+
+
+class MovieApp:
+
+     def Menu(self):
+         print("\nMENU\n--------------------------------")
+         print("1. All Movies")
+         print("2. search location")
+         print("3. Search THEATER")
+         print("4. Booking History")
+         print("5. Log out")
+         choice = int(input("Enter your choice:"))
+      
+         if(choice==1):
+             print("MOVIE LIST\n------------------------------")
+             printer(movielist,2)
+
+         if(choice==2):
+             print("LOCATIONS:\n------------------\nChennai\nTrichy\nCoimbatore")
+             location=str(input("Choose one location:"))
+             if(location=="Chennai"):
+                 printer(movielist,1)
+             elif(location=="Trichy"):
+                 printer(movielist,2)
+             else:
+                 movielist.reverse()
+                 printer(movielist,2)
+         if(choice==3):
+             print("THEATER:\n--------------------------\nDNC\nSATHYA\nDASS")
+             Theater=str(input("choose one theater:"))
+             if(Theater=="dnc"):
+                 printer(movielist,1)
+                 print("AVAIABLE TIMINGS\n-------------------------------------------")
+                 print("10:30\n1:30\n6:30\n23:00")
+             elif(Theater=="dass"):
+                 printer(movielist,2)
+                 print("AVAIABLE TIMINGS\n-------------------------------------------")
+                 print("10:30\n1:30\n6:30\n23:00")
+             else:
+                 movielist.reverse()
+                 printer(movielist,2)
+                 print("AVAIABLE TIMINGS\n-------------------------------------------")
+                 print("10:30\n1:30\n6:30\n23:00")
+                 
+                 
+              
+if __name__=="__main__":
+
+    print("~WELCOME TO THE MOVIE WORLD~\n----------------------------")
+    status = str(input("\nNew User? (y/n): "))
+    
+    app=bookmyshow(1,"GOWTHAM","gowtham@gmail.com","gowtham@19",9873216540)
+    app.hardcodedata()
+    app=bookmyshow(1,"PAVI","pavi25@gmail.com","pavi@25",9825736420)
+    app.hardcodedata()
+
+    movieobj = MovieApp()
+    
+    if status=='y':
+        app.register()
+        print("Registered successfully")
+        movieobj.Menu() 
+    else:
+        print("LOGIN PAGE\n----------------------")
+        Emailid=str(input("EMAILID: "))
+        Password=str(input("password: "))
+        checklogin_user=app.validlogin(Emailid,Password)
+        if checklogin_user:
+            print("Logged in successfully")
+            movieobj.Menu() 
         else:
-            print("**Invalid Details**\n Please, Enter the details correctly")
-
-class Theatre:
-    def __init__(self,th_name,theatre_id,theatre_location,theatre_sp):
-        self.theatre_id=theatre_id
-        self.th_name=th_name
-        self.theatre_location=theatre_location
-        self.theatre_sp=theatre_sp
-    def display_theatres(self):
-        print("Theatre Name:",self.th_name,"\nTheater_ID:",self.theatre_id,"\nLocation:",self.theatre_location,"\nFeatures:",self.theatre_sp,"\n-------------------")
-class Movie_listings:
-    def __init__ (self,movie_id,movie_name,movie_lang,duration,certif,tick_cost):
-        self.movie_id=movie_id
-        self.movie_name=movie_name
-        self.movie_lang=movie_lang
-        self.duration=duration
-        self.certif=certif
-        self.tick_cost=tick_cost
-    def display_movie(self):
-        print("Movie ID:",self.movie_id,"\nMovie Name:",self.movie_name,"\nLanguage:",self.movie_lang,"\nDuration:",self.duration,"\nCertificate:",self.certif,"\nTicket Cost:",self.tick_cost,"\n-------------------")
-
-user_id_entered = input("Enter user_id: ")
-password_entered = input("Enter password: ")
-user1 = User_details("gowtham19","1909","GOWTHAM","Male","gowtham@gmail.com")
-
-t1=Theatre("VIDHYA THEATRE",2000,"Vellore","\n4K quality with Dolby Atmos sound effect \nIt has maximum of 240 seats ")
-t2=Theatre("VIJAY Cinemas",2001,"Arani","\nWide Screen with 3d sound quality\nIt has maximum of 200 seats ")
-t3=Theatre("Rohini THEATRE",2002,"Chennai","\nIMAX Screen with 3d sound effect\nIt has maximum of 400 seats ")
-
-galaxy_movies=[
-     ["1d","PS2","Tamil",'2hrs 45mins',"U","Rs.200"],
-     ["2d","Interstellar","English",'2hrs 40mins',"U","Rs.150"],
-     ["3d","KFN","Tamil",'2hrs 10mins',"U","Rs.150"]
-]
-alangar_movies=[
-     ["1d","KK","Tamil",'2hrs 30mins',"U","Rs.150"],
-     ["2d","Mission to Mars","Hindi","3 hrs","U","Rs.200"],
-     ["3d","Martian","English","2 hrs","U","Rs.200"]
-]
-rohini_movies=[
-     ["1d","Sooriya Vamsam","Tamil","2 hrs 15 mins","U","Rs.100"],
-     ["2d","Conjuring","English","2 hrs","A","Rs.150"],
-     ["3d","MSD","Hindi","2 hrs","U","Rs.200"]
-]
-user1.logging_in(user_id_entered,password_entered)
+            print("Invalid Login\nGoto Register")
+            app.register()
