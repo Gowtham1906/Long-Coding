@@ -1,6 +1,7 @@
 users=[]
-movielist=[["Movie Name: Bigil;","Language: Tamil;", "Genere: Sports;", "Rating: 8.8/10"],
-           ["Movie Name: Porthozhil;","Language: Tamil,English;", "Genere: Thriller;", "Rating: 9.0/10"]]
+movielist=[["Movie Name: Bigil;","Language: Tamil,Telugu;", "Genere: Sports;", "Rating: 8.8/10"],
+           ["Movie Name: Porthozhil;","Language: Tamil,Telgu;", "Genere: Thriller;", "Rating: 9.0/10"],
+           ["Movie Name: Jailer;","Language: Tamil,Hindhi,Malayalam;", "Genere: Action;", "Rating: 9.5/10"]]
 
 
 def printer(movielist,n):
@@ -73,6 +74,9 @@ class MovieApp:
                  printer(movielist,1)
              elif(location=="Trichy"):
                  printer(movielist,2)
+             elif(location=="Coiambatore"):
+                 printer(movielist,3)
+            
              else:
                  movielist.reverse()
                  printer(movielist,2)
@@ -92,6 +96,10 @@ class MovieApp:
                  printer(movielist,2)
                  print("AVAIABLE TIMINGS\n-------------------------------------------")
                  print("10:30\n1:30\n6:30\n23:00")
+         if(choice==4):
+             print("Booking History:\n--------------------------\n~No Booked History~")
+         if(choice==5):
+             print("Logout")
                  
                  
               
@@ -100,9 +108,9 @@ if __name__=="__main__":
     print("~WELCOME TO THE MOVIE WORLD~\n----------------------------")
     status = str(input("\nNew User? (y/n): "))
     
-    app=bookmyshow(1,"GOWTHAM","gowtham@gmail.com","gowtham@19",9873216540)
+    app=bookmyshow(1,"GOWTHAM","gowtham@gmail.com","gowtham@19",9629240217)
     app.hardcodedata()
-    app=bookmyshow(1,"PAVI","pavi25@gmail.com","pavi@25",9825736420)
+    app=bookmyshow(2,"PAVI","pavi@gmail.com","pavi@25",9825736420)
     app.hardcodedata()
 
     movieobj = MovieApp()
@@ -120,5 +128,5 @@ if __name__=="__main__":
             print("Logged in successfully")
             movieobj.Menu() 
         else:
-            print("Invalid Login\nGoto Register")
+            print("Invalid Login\nGo to Register")
             app.register()
